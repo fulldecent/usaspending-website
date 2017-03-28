@@ -17,4 +17,13 @@
     @import "./_table";
     @import "./_financialSystem";
     @import "./_additionalDetails";
+
+    @import "../../../elements/_titleSelector";
+    .field-picker {
+        float: none;
+        clear: both;
+        @include media($tablet-screen) {
+            display: none;
+        }
+    }
 }

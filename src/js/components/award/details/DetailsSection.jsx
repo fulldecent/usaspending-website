@@ -14,6 +14,7 @@ import FinancialSystemTableContainer from 'containers/award/table/FinancialSyste
 import DetailsTabBar from './DetailsTabBar';
 import ContractAdditionalDetails from './additional/ContractAdditionalDetails';
 import AssistanceAdditionalDetails from './additional/AssistanceAdditionalDetails';
+import DetailsTablePicker from './DetailsTablePicker';
 
 const propTypes = {
     award: React.PropTypes.object,
@@ -89,6 +90,9 @@ export default class DetailsSection extends React.Component {
         return (
             <div className="contract-details-table-section" id="details-table-section">
                 <DetailsTabBar
+                    activeTab={this.props.activeTab}
+                    clickTab={this.props.clickTab} />
+                <DetailsTablePicker
                     activeTab={this.props.activeTab}
                     clickTab={this.props.clickTab} />
                 <div
