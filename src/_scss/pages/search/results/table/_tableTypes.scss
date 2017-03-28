@@ -1,4 +1,8 @@
 .table-types {
+    display: none;
+    @include media($tablet-screen) {
+        display: block;
+    }
     border-bottom: 1px solid $color-gray-light;
     padding-left: rem(15);
     button.table-type-toggle {
@@ -69,5 +73,14 @@ button.table-type-toggle.coming-soon {
             rgba($color-gray-lighter, .3) rem(2px),
             rgba($color-gray-lighter, .3) rem(4px)
         );
+    }
+}
+
+@import "../../../../elements/_titleSelector";
+.field-picker {
+    float: none;
+    clear: both;
+    @include media($tablet-screen) {
+        display: none;
     }
 }

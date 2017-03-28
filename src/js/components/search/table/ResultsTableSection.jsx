@@ -8,6 +8,7 @@ import React from 'react';
 import ResultsTable from './ResultsTable';
 import ResultsTableTabs from './ResultsTableTabs';
 import ResultsTableMessage from './ResultsTableMessage';
+import ResultsTablePicker from './ResultsTablePicker';
 
 const propTypes = {
     inFlight: React.PropTypes.bool,
@@ -61,6 +62,10 @@ export default class ResultsTableSection extends React.Component {
                 <h3>Spending by Award Type</h3>
                 <hr className="results-divider" />
                 <ResultsTableTabs
+                    types={this.props.tableTypes}
+                    active={this.props.currentType}
+                    switchTab={this.props.switchTab} />
+                <ResultsTablePicker
                     types={this.props.tableTypes}
                     active={this.props.currentType}
                     switchTab={this.props.switchTab} />
