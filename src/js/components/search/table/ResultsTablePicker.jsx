@@ -41,8 +41,7 @@ export default class ResultsTablePicker extends React.Component {
                 key={`table-type-item-${type.internal}`} />
         ));
 
-        //TODO: set currentField to current Award Type
-        const currentField = 'Select Award Type';
+        const currentField = this.props.active;
         let showPicker = 'hide';
         let icon = <Icons.AngleDown alt="Pick a field" />;
         if (this.state.showPicker) {

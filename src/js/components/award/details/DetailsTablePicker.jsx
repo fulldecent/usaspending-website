@@ -64,8 +64,7 @@ export default class DetailsTablePicker extends React.Component {
                 clickTab={this.props.clickTab}
                 key={tab.code} />));
 
-        //TODO: set currentField to current tab name
-        const currentField = 'Select';
+        const currentField = this.props.activeTab;
         let showPicker = 'hide';
         let icon = <Icons.AngleDown alt="Pick a field" />;
         if (this.state.showPicker) {

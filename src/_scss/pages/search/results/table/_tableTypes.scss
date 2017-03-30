@@ -83,4 +83,10 @@ button.table-type-toggle.coming-soon {
     @include media($tablet-screen) {
         display: none;
     }
+    .selected-button {
+        .label {
+            text-transform: capitalize;
+            color: $color-gray;
+        }
+    }
 }
