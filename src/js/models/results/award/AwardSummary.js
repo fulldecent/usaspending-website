@@ -6,6 +6,7 @@
 import moment from 'moment';
 
 import * as MoneyFormatter from 'helpers/moneyFormatter';
+import * as SummaryPageHelper from 'helpers/summaryPageHelper';
 
 import GenericRecord from '../GenericRecord';
 
@@ -19,6 +20,7 @@ const fields = [
     'period_of_performance_start_date',
     'period_of_performance_current_end_date',
     'award_type',
+    'internal_general_type',
     'type',
     'type_description',
     'awarding_agency_name',
@@ -53,6 +55,7 @@ const remapData = (data, idField) => {
     let id = 0;
     let parentId = 0;
     let awardType = '';
+    let internalGeneralType = 'unknown';
     let awardTypeDescription = '';
     let awardDescription = '';
     let awardingAgencyName = '';
@@ -88,6 +91,7 @@ const remapData = (data, idField) => {
 
     if (data.type) {
         awardType = data.type;
+        internalGeneralType = SummaryPageHelper.awardType(data.type);
     }
 
     if (data.type_description) {
@@ -148,6 +152,7 @@ const remapData = (data, idField) => {
     remappedData.id = id;
     remappedData.parent_id = parentId;
     remappedData.award_type = awardType;
+    remappedData.internal_general_type = internalGeneralType;
     remappedData.type_description = awardTypeDescription;
     remappedData.description = awardDescription;
     remappedData.awarding_agency_name = awardingAgencyName;
