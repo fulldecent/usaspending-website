@@ -3,19 +3,22 @@
 * Created by Emily Gullo
 **/
 
-/* eslint-disable import/prefer-default-export */
-// We only have one export but want to maintain consistency with other query modules
 const keywordField = 'description';
 
-export const buildKeywordQuery = (value) => {
+const buildKeywordQueryWithPrefix = (value, prefix) => {
     const keyword = value;
 
     const filter = {
-        field: keywordField,
+        field: `${prefix}${keywordField}`,
         operation: "search",
         value: keyword
     };
 
     return filter;
 };
-/* eslint-enable import/prefer-default-export */
+
+export const buildKeywordQuery = (value) =>
+    buildKeywordQueryWithPrefix(value, '');
+
+export const buildFileCKeywordQuery = (value) =>
+    buildKeywordQueryWithPrefix(value, 'award__');

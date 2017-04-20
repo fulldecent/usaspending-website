@@ -8,7 +8,7 @@ const recipientIdField = 'recipient__legal_entity_id';
 const countryCodeField = 'recipient__location__location_country_code';
 const locationIdField = 'recipient__location__location_id';
 
-export const buildRecipientQuery = (recipients) => {
+const buildRecipientQueryWithPrefix = (recipients, prefix) => {
     const recipientSet = [];
 
     // Push legal_entity_id's of selected recipients
@@ -17,7 +17,7 @@ export const buildRecipientQuery = (recipients) => {
     });
 
     const filter = {
-        field: recipientIdField,
+        field: `${prefix}${recipientIdField}`,
         operation: "in",
         value: recipientSet
     };
@@ -25,14 +25,14 @@ export const buildRecipientQuery = (recipients) => {
     return filter;
 };
 
-export const buildDomesticForeignQuery = (selection) => {
+const buildDomesticForeignQueryWithPrefix = (selection, prefix) => {
     let op = 'equals';
     if (selection === 'foreign') {
         op = 'not_equals';
     }
 
     const filter = {
-        field: countryCodeField,
+        field: `${prefix}${countryCodeField}`,
         operation: op,
         value: 'USA'
     };
@@ -40,7 +40,7 @@ export const buildDomesticForeignQuery = (selection) => {
     return filter;
 };
 
-export const buildRecipientLocationQuery = (locations) => {
+const buildRecipientLocationQueryWithPrefix = (locations, prefix) => {
     let locationSet = [];
 
     // Concatenate Matched IDs of selected locations
@@ -50,10 +50,29 @@ export const buildRecipientLocationQuery = (locations) => {
     });
 
     const filter = {
-        field: locationIdField,
+        field: `${prefix}${locationIdField}`,
         operation: "in",
         value: locationSet
     };
 
     return filter;
 };
+
+
+export const buildRecipientQuery = (recipients) =>
+    buildRecipientQueryWithPrefix(recipients, '');
+
+export const buildFileCRecipientQuery = (recipients) =>
+    buildRecipientQueryWithPrefix(recipients, 'award__');
+
+export const buildDomesticForeignQuery = (selection) =>
+    buildDomesticForeignQueryWithPrefix(selection, '');
+
+export const buildFileCDomesticForeignQuery = (selection) =>
+    buildDomesticForeignQueryWithPrefix(selection, 'award__');
+
+export const buildRecipientLocationQuery = (locations) =>
+    buildRecipientLocationQueryWithPrefix(locations, '');
+
+export const buildFileCRecipientLocationQuery = (locations) =>
+    buildRecipientLocationQueryWithPrefix(locations, 'award__');

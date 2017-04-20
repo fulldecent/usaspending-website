@@ -111,13 +111,13 @@ export class SpendingByCategoryRankVisualizationSectionContainer extends React.C
 
     fetchAwardData() {
         const fieldName = fieldNames[this.state.scope];
-        const field = 'financial_set__transaction_obligated_amount';
+        const field = 'transaction_obligated_amount';
 
-        let group = [`financial_set__${fieldName}`];
+        let group = [fieldName];
         if (this.state.scope === 'federalAccounts') {
             group = [
-                `financial_set__${fieldName}`,
-                "financial_set__treasury_account__federal_account_id"
+                fieldName,
+                "treasury_account__federal_account_id"
             ];
         }
 

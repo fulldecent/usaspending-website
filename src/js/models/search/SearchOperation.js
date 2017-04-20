@@ -80,6 +80,12 @@ class SearchOperation {
         // data structures between Awards and Transactions
         const filters = [];
 
+        return filters;
+    }
+
+    uniqueParams() {
+        const filters = [];
+
         // add keyword query
         if (this.keyword !== '') {
             filters.push(KeywordQuery.buildKeywordQuery(this.keyword));
@@ -122,12 +128,6 @@ class SearchOperation {
                 this.selectedRecipientLocations)
             );
         }
-
-        return filters;
-    }
-
-    uniqueParams() {
-        const filters = [];
 
         // Add time period queries
         if (this.timePeriodFY.length > 0 || this.timePeriodRange.length === 2) {

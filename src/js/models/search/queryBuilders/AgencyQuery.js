@@ -9,7 +9,7 @@ const tasPrefix = 'treasury_account__';
 const appropriationsPrefix = 'treasury_account_identifier__';
 const fileCPrefix = 'award__financial_set__';
 
-export const buildAgencyQuery = (funding, awarding) => {
+const buildAgencyQueryWithPrefix = (funding, awarding, prefix) => {
     const toptierFundingSet = [];
     const subtierFundingSet = [];
     const toptierAwardingSet = [];
@@ -40,7 +40,7 @@ export const buildAgencyQuery = (funding, awarding) => {
 
     if (toptierFundingSet.length > 0) {
         filter.filters.push({
-            field: 'funding_agency__toptier_agency__name',
+            field: `${prefix}funding_agency__toptier_agency__name`,
             operation: "in",
             value: toptierFundingSet
         });
@@ -48,7 +48,7 @@ export const buildAgencyQuery = (funding, awarding) => {
 
     if (subtierFundingSet.length > 0) {
         filter.filters.push({
-            field: 'funding_agency__subtier_agency__name',
+            field: `${prefix}funding_agency__subtier_agency__name`,
             operation: "in",
             value: subtierFundingSet
         });
@@ -56,7 +56,7 @@ export const buildAgencyQuery = (funding, awarding) => {
 
     if (toptierAwardingSet.length > 0) {
         filter.filters.push({
-            field: 'awarding_agency__toptier_agency__name',
+            field: `${prefix}awarding_agency__toptier_agency__name`,
             operation: "in",
             value: toptierAwardingSet
         });
@@ -64,7 +64,7 @@ export const buildAgencyQuery = (funding, awarding) => {
 
     if (subtierAwardingSet.length > 0) {
         filter.filters.push({
-            field: 'awarding_agency__subtier_agency__name',
+            field: `${prefix}awarding_agency__subtier_agency__name`,
             operation: "in",
             value: subtierAwardingSet
         });
@@ -72,6 +72,12 @@ export const buildAgencyQuery = (funding, awarding) => {
 
     return filter;
 };
+
+export const buildAgencyQuery = (funding, awarding) =>
+    buildAgencyQueryWithPrefix(funding, awarding, '');
+
+export const buildFileCAgencyQuery = (funding, awarding) =>
+    buildAgencyQueryWithPrefix(funding, awarding, 'award__');
 
 export const buildFundingAgencyCGACQuery = (funding, requestType) => {
     const fundingSet = [];
