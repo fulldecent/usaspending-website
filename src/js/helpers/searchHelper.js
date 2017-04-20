@@ -180,6 +180,23 @@ export const fetchAwardIDs = (params) => {
 };
 
 // make API call to awards total aggregation endpoint
+export const performAccountsAwardsTotalSearch = (params) => {
+    const source = CancelToken.source();
+    return {
+        promise: Axios.request({
+            url: 'accounts/awards/total/',
+            baseURL: kGlobalConstants.API,
+            method: 'post',
+            data: params,
+            cancelToken: source.token
+        }),
+        cancel() {
+            source.cancel();
+        }
+    };
+};
+
+// make API call to transactions total aggregation endpoint
 export const performTransactionsTotalSearch = (params) => {
     const source = CancelToken.source();
     return {

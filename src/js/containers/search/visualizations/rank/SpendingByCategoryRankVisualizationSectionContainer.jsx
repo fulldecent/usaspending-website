@@ -109,15 +109,15 @@ export class SpendingByCategoryRankVisualizationSectionContainer extends React.C
         });
     }
 
-    fetchTransactionData() {
+    fetchAwardData() {
         const fieldName = fieldNames[this.state.scope];
-        const field = 'federal_action_obligation';
+        const field = 'financial_set__transaction_obligated_amount';
 
-        let group = [`award__financial_set__${fieldName}`];
+        let group = [`financial_set__${fieldName}`];
         if (this.state.scope === 'federalAccounts') {
             group = [
-                `award__financial_set__${fieldName}`,
-                "award__financial_set__treasury_account__federal_account_id"
+                `financial_set__${fieldName}`,
+                "financial_set__treasury_account__federal_account_id"
             ];
         }
 
@@ -145,7 +145,7 @@ export class SpendingByCategoryRankVisualizationSectionContainer extends React.C
             page: this.state.page
         };
 
-        this.apiRequest = SearchHelper.performTransactionsTotalSearch(apiParams);
+        this.apiRequest = SearchHelper.performAccountsAwardsTotalSearch(apiParams);
 
         this.apiRequest.promise
             .then((res) => {
@@ -206,7 +206,7 @@ export class SpendingByCategoryRankVisualizationSectionContainer extends React.C
 
         // Fetch data from the appropriate endpoint
         if (this.props.awardFiltersSelected) {
-            this.fetchTransactionData();
+            this.fetchAwardData();
         }
         else {
             this.fetchCategoryData();
