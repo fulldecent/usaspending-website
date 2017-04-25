@@ -12,4 +12,12 @@ svg {
         font-size: $base-font-size + rem(2);
         font-weight: $font-semibold;
     }
+
+    :hover {
+        .category,
+        .value {
+            fill: #212121;
+            text-shadow: none;
+        }
+    }
 }
