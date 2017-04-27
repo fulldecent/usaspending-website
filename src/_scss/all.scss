@@ -1,9 +1,9 @@
 // Vendor -------------- //
-
 @import 'lib/bourbon/bourbon';
 @import 'lib/neat/neat';
 @import 'lib/normalize';
 @import 'lib/mapbox/mapbox';
+
 
 // Core -------------- //
 @import 'core/defaults';
@@ -25,7 +25,6 @@
 
 
 // Components -------------- //
-
 @import 'components/accordions';
 @import 'components/alerts';
 @import 'components/disclaimer';
