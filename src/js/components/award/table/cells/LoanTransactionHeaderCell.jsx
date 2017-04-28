@@ -1,12 +1,12 @@
 /**
- * AssistanceTransactionHeaderCell.jsx
- * Created by Lizzie Dabbs 03/07/17
+ * LoanTransactionHeaderCell.jsx
+ * Created by Emily Gullo 04/24/2017
  */
 
 import React from 'react';
 import * as Icons from 'components/sharedComponents/icons/Icons';
 
-import tableMapping from 'dataMapping/financialAssistance/financialAssistanceTransactionTable';
+import tableMapping from 'dataMapping/financialAssistance/loanTransactionTable';
 
 const propTypes = {
     label: React.PropTypes.string,
@@ -17,7 +17,7 @@ const propTypes = {
     isLastColumn: React.PropTypes.bool
 };
 
-export default class AssistanceTransactionHeaderCell extends React.Component {
+export default class LoanTransactionHeaderCell extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,7 +27,7 @@ export default class AssistanceTransactionHeaderCell extends React.Component {
 
     clickedHeader() {
         // check if this is the field that is currently being used to sort
-        const apiFieldName = tableMapping.table._mapping[this.props.column];
+        const apiFieldName = tableMapping.table._sortFields[this.props.column];
         if (apiFieldName === this.props.order.field) {
             // it's the same field, just toggle the direction
             let direction = 'asc';
@@ -54,7 +54,7 @@ export default class AssistanceTransactionHeaderCell extends React.Component {
         e.stopPropagation();
 
         const direction = e.currentTarget.value;
-        const apiFieldName = tableMapping.table._mapping[this.props.column];
+        const apiFieldName = tableMapping.table._sortFields[this.props.column];
         this.props.setTransactionSort({
             direction,
             field: apiFieldName
@@ -63,7 +63,7 @@ export default class AssistanceTransactionHeaderCell extends React.Component {
 
     render() {
         // highlight the active arrows
-        const apiFieldName = tableMapping.table._mapping[this.props.column];
+        const apiFieldName = tableMapping.table._sortFields[this.props.column];
         let activeAsc = '';
         let activeDesc = '';
         if (apiFieldName === this.props.order.field) {
@@ -122,4 +122,4 @@ export default class AssistanceTransactionHeaderCell extends React.Component {
     }
 }
 
-AssistanceTransactionHeaderCell.propTypes = propTypes;
+LoanTransactionHeaderCell.propTypes = propTypes;
