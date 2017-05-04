@@ -52,9 +52,7 @@ export default class NextStepsBox extends React.Component {
             </a>
         );
 
-        if (this.props.icon === 'faq' ||
-            this.props.icon === 'download' ||
-            this.props.icon === 'next') {
+        if (this.props.icon === 'download') {
             link = (
                 <button className="usa-button-disabled-outline">
                     Coming Soon...
